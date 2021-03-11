@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CAPP.Application\CAPP.Application.csproj" />
+    <ProjectReference Include="..\CAPP.Domain\CAPP.Domain.csproj" />
+    <ProjectReference Include="..\CAPP.Infrastructure\CAPP.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\IntegerNumberPicker - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>IntegerNumberPicker.xaml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Views\DoubleNumberPicker.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

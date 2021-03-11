@@ -1,0 +1,385 @@
+﻿<UserControl x:Class="CAPP.UI.Views.TechnologicalProcessView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CAPP.UI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="650" 
+             d:DesignWidth="800"
+             d:Background="White">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Right">
+            <Grid Margin="0 0 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>                
+                
+                <Border Grid.ColumnSpan="3" 
+                        BorderThickness="1" 
+                        BorderBrush="Gray" 
+                        Background="LightGray"
+                        CornerRadius="5 5 0 0"/>
+                
+                <Border Grid.ColumnSpan="3" 
+                        Grid.Row="1"
+                        Grid.RowSpan="3"
+                        BorderThickness="1 0 1 1" 
+                        BorderBrush="Gray" 
+                        CornerRadius="0 0 5 5"/>
+
+                <Label Grid.ColumnSpan="2" 
+                       Content="Операция"                       
+                       Margin="5"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+                <Label Content="Номер"
+                       Margin="5"
+                       Grid.Row="1"/>
+                
+                <Label Content="Название"
+                       Margin="5"
+                       Grid.Row="2"/>
+
+                <local:IntegerNumberPicker Value="{Binding Number, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                           Grid.Column="1"
+                                           Grid.Row="1"
+                                           Height="30"
+                                           HorizontalAlignment="Left"
+                                           Width="120"
+                                           Minimum="1"/>
+
+                <ComboBox ItemsSource="{Binding OperationGroups}" 
+                          Grid.Column="1" 
+                          Grid.Row="2"
+                          Height="30" 
+                          MinWidth="150" 
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding SelectedOperationGroup}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="3"
+                            Grid.ColumnSpan="2">                    
+                    <Button Content="Добавить"
+                            Margin="5"                        
+                            Width="95"
+                            Command="{Binding AddOperationGroupCommand}"/>
+
+                    <Button Content="Изменить"
+                            Margin="5"                        
+                            Width="95"
+                            HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Grid>
+            <Grid Margin="0 0 0 5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border BorderBrush="Gray" 
+                        BorderThickness="1" 
+                        CornerRadius="5 5 0 0" 
+                        Grid.ColumnSpan="3" 
+                        Background="LightGray"/>
+                <Border BorderBrush="Gray" 
+                        BorderThickness="1 0 1 1" 
+                        CornerRadius="0 0 5 5" 
+                        Grid.ColumnSpan="3" 
+                        Grid.Row="1"
+                        Grid.RowSpan="7"/>
+
+                <Label Content="Переход"
+                       Grid.ColumnSpan="3" 
+                       HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Margin="5"/>
+                <Label Content="Действие"
+                       Grid.Row="1"
+                       Margin="5"/>
+                <Label Content="Объект"
+                       Grid.Row="2"
+                       Margin="5"/>
+                <Label Content="ID"
+                       Grid.Row="3"
+                       Margin="5"/>
+                <Label Content="Размер 1"
+                       Grid.Row="4"
+                       Margin="5"/>
+                <Label Content="Размер 2"
+                       Grid.Row="5"
+                       Margin="5"/>
+                <Label Content="Размер 3"
+                       Grid.Row="6"
+                       Margin="5"/>
+
+                <ComboBox ItemsSource="{Binding Operations}" 
+                          Grid.Column="1" 
+                          Grid.Row="1"
+                          Height="30"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding SelectedOperation}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding KeyWord}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <ComboBox ItemsSource="{Binding OperationObjects}" 
+                          Grid.Column="1" 
+                          Grid.Row="2"
+                          Height="30"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding SelectedOperationObject}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <local:IntegerNumberPicker Grid.Column="1"
+                                           Grid.Row="3"
+                                           Height="30"
+                                           Width="120"
+                                           HorizontalAlignment="Left"
+                                           Minimum="1"
+                                           Value="{Binding Id, 
+                                                           Mode=TwoWay, 
+                                                           UpdateSourceTrigger=PropertyChanged}"/>
+
+                <StackPanel Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="4"
+                            Height="30"
+                            Orientation="Horizontal">
+                    <TextBox Width="50"
+                             ToolTip="Имя"
+                             Margin="0 0 5 0"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             Text="{Binding Size1.Name, 
+                                            Mode=TwoWay, 
+                                            UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <local:DoubleNumberPicker  Width="120"
+                                               Minimum="0.0"
+                                               ToolTip="Значение"
+                                               Value="{Binding Size1.Value, 
+                                                               Mode=TwoWay, 
+                                                               UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Grid.Row="5"
+                            Height="30"
+                            Orientation="Horizontal">
+                    <TextBox Width="50"
+                             ToolTip="Имя"                             
+                             Margin="0 0 5 0"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             Text="{Binding Size2.Name, 
+                                            Mode=TwoWay, 
+                                            UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <local:DoubleNumberPicker Width="120"
+                                              Minimum="0.0"
+                                              ToolTip="Значение"
+                                              Value="{Binding Size2.Value, 
+                                                               Mode=TwoWay, 
+                                                               UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            Grid.ColumnSpan="2"
+                            Grid.Row="6"
+                            Height="30"
+                            Orientation="Horizontal">
+                    <TextBox Width="50"
+                             ToolTip="Имя"
+                             Margin="0 0 5 0"
+                             VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center"
+                             Text="{Binding Size3.Name, 
+                                            Mode=TwoWay, 
+                                            UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <local:DoubleNumberPicker  Width="120"
+                                               Minimum="0.0"
+                                               ToolTip="Значение"
+                                               Value="{Binding Size3.Value, 
+                                                               Mode=TwoWay, 
+                                                               UpdateSourceTrigger=PropertyChanged}"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="7"
+                            Grid.ColumnSpan="2">
+                    
+                    <Button Content="Добавить"
+                            Margin="5"                        
+                            Width="95"
+                            HorizontalAlignment="Left"
+                            Command="{Binding AddOperationCommand}"/>
+
+                    <Button Content="Изменить"
+                            Margin="5"                        
+                            Width="95"
+                            HorizontalAlignment="Left"/>
+                </StackPanel>                
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Border Grid.ColumnSpan="2"
+                        CornerRadius="5 5 0 0"
+                        BorderThickness="1"
+                        BorderBrush="Gray"
+                        Background="LightGray"/>
+
+                <Border Grid.ColumnSpan="2"
+                        Grid.Row="1"
+                        Grid.RowSpan="5"
+                        CornerRadius="0 0 5 5"
+                        BorderThickness="1 0 1 1"
+                        BorderBrush="Gray"/>
+
+                <Label Content="Средства технологического оснащения"
+                       Grid.ColumnSpan="2"
+                       HorizontalAlignment="Center"
+                       Margin="5"/>
+
+                <Label Content="Инструмент"
+                       Grid.Row="2"
+                       Margin="5"/>
+
+                <Label Content="Оснастка"
+                       Grid.Row="3"
+                       Margin="5"/>
+
+                <Label Content="Средства контроля"
+                       Grid.Row="4"
+                       Margin="5"/>                
+
+                <ComboBox ItemsSource="{Binding OperationObjects}" 
+                          Grid.Column="1" 
+                          Grid.Row="2"
+                          Height="30"
+                          Margin="5 0"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding SelectedOperationObject}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <ComboBox ItemsSource="{Binding OperationObjects}" 
+                          Grid.Column="1" 
+                          Grid.Row="3"
+                          Height="30"
+                          Margin="5 0"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding SelectedOperationObject}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <ComboBox ItemsSource="{Binding OperationObjects}" 
+                          Grid.Column="1" 
+                          Grid.Row="4"
+                          Height="30"
+                          Margin="5 0"
+                          VerticalContentAlignment="Center"
+                          SelectedItem="{Binding SelectedOperationObject}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+
+                <StackPanel Orientation="Horizontal"
+                            Grid.Row="5"
+                            Grid.ColumnSpan="2">
+                    
+                    <Button Content="Добавить"                        
+                            Margin="5"
+                            Width="95"
+                            HorizontalAlignment="Left"/>
+
+                    <Button Content="Изменить"
+                            Margin="5"                        
+                            Width="95"
+                            HorizontalAlignment="Left"/>
+                </StackPanel>                
+            </Grid>
+        </StackPanel>
+        <StackPanel DockPanel.Dock="Bottom"
+                    Orientation="Horizontal"                    
+                    Background="LightGray"
+                    Margin="0 0 5 0">
+            <Label Content="Выделенный элемент:"
+                   Margin="5"/>
+            <TextBlock Text="{Binding SelectedTreeViewItem.StringValue}"
+                       VerticalAlignment="Center"/>
+        </StackPanel>
+        <TreeView SelectedItemChanged="TreeView_SelectedItemChanged"
+                  Margin="0 0 5 0"
+                  Padding="0 5"
+                  ItemsSource="{Binding TreeItems}">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding OperationTreeViewItems}">
+                    <TextBlock Text="{Binding StringValue}"/>
+                    <HierarchicalDataTemplate.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding StringValue}"/>
+                        </DataTemplate>
+                    </HierarchicalDataTemplate.ItemTemplate>
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+    </DockPanel>
+</UserControl>
